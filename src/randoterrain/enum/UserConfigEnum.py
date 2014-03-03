@@ -1,0 +1,3 @@
+class UserConfigEnum(object):
+    LAST_BROWSE_PATH = 'LAST_BROWSE_PATH'
+    NIMBLE_TEST_STATUS = 'NIMBLE_TEST_STATUS'

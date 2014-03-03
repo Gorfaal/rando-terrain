@@ -1,24 +1,26 @@
-# Rando Terrain by Mike Knowles
+# rando-terrain by Mike Knowles
 # Base project by Scott Ernst
 
-
 from PySide import QtGui
-from pyglass.widgets.PyGlassWidget import PyGlassWidget
-from mayapy.enum.UserConfigEnum import UserConfigEnum
-from mayapy.views.home.NimbleStatusElement import NimbleStatusElement
-from nimble import cmds
-from random import randint
 
-class MayaPyHomeWidget(PyGlassWidget):
+from pyglass.widgets.PyGlassWidget import PyGlassWidget
+from randoterrain.enum.UserConfigEnum import UserConfigEnum
+from randoterrain.views.home.NimbleStatusElement import NimbleStatusElement
+from random import randint
+from nimble import cmds
+
+
+class RandoTerrainHomeWidget(PyGlassWidget):
     def __init__(self, parent, **kwargs):
-        super(MayaPyHomeWidget, self).__init__(parent, **kwargs)
+        super(RandoTerrainHomeWidget, self).__init__(parent, **kwargs)
         self._firstView = True
         self._statusBox, statusLayout = self._createElementWidget(self, QtGui.QVBoxLayout, True)
         statusLayout.addStretch()
         self._nimbleStatus = NimbleStatusElement(
             self._statusBox,
-            disabled=self.mainWindow.appConfig.get(UserConfigEnum.NIMBLE_TEST_STATUS, True) )
+            disabled=self.mainWindow.appConfig.get(UserConfigEnum.NIMBLE_TEST_STATUS, True))
         statusLayout.addWidget(self._nimbleStatus)
+
         self.sizeDial.setRange(1, 10)
         self.sizeDial.valueChanged.connect(self._sizeChanged)
         self.generateTerrainButton.clicked.connect(self._generateTerrain)

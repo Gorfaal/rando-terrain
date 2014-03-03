@@ -5,7 +5,7 @@
 from pyglass.app.PyGlassApplication import PyGlassApplication
 
 #___________________________________________________________________________________________________ MayaPyApplication
-class MayaPyApplication(PyGlassApplication):
+class RandoTerrainApplication(PyGlassApplication):
 
 #===================================================================================================
 #                                                                                   G E T / S E T
@@ -23,21 +23,21 @@ class MayaPyApplication(PyGlassApplication):
 #___________________________________________________________________________________________________ GS: appID
     @property
     def appID(self):
-        return 'MayaPy'
+        return 'RandoTerrain'
 
 #___________________________________________________________________________________________________ GS: appGroupID
     @property
     def appGroupID(self):
-        return 'MayaPy'
+        return 'RandoTerrain'
 
 #___________________________________________________________________________________________________ GS: mainWindowClass
     @property
     def mainWindowClass(self):
-        from mayapy.MayaPyMainWindow import MayaPyMainWindow
-        return MayaPyMainWindow
+        from randoterrain.RandoTerrainMainWindow import RandoTerrainMainWindow
+        return RandoTerrainMainWindow
 
 ####################################################################################################
 ####################################################################################################
 
 if __name__ == '__main__':
-    MayaPyApplication().run()
+    RandoTerrainApplication().run()

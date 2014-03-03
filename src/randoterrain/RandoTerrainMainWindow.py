@@ -1,22 +1,23 @@
+# Mike Knowles
+# Based on
 # MayaPyMainWindow.py
 # (C)2013
 # Scott Ernst
-
 from PySide import QtGui
-
 from pyglass.windows.PyGlassWindow import PyGlassWindow
+from views.home.RandoTerrainHomeWidget import RandoTerrainHomeWidget
 
-from views.home.MayaPyHomeWidget import MayaPyHomeWidget
-class MayaPyMainWindow(PyGlassWindow):
+
+class RandoTerrainMainWindow(PyGlassWindow):
     def __init__(self, **kwargs):
         PyGlassWindow.__init__(
             self,
             widgets={
-                'home':MayaPyHomeWidget,},
-            title='MayaPy',
-            **kwargs )
+                'home': RandoTerrainHomeWidget, },
+            title='rando-terrain',
+            **kwargs)
 
-        self.setMinimumSize(1024,480)
+        self.setMinimumSize(1024, 480)
         self.setContentsMargins(0, 0, 0, 0)
 
         widget = self._createCentralWidget()

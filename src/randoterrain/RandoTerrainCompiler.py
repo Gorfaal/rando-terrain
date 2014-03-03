@@ -4,11 +4,10 @@
 
 from pyglass.compile.PyGlassApplicationCompiler import PyGlassApplicationCompiler
 from pyglass.compile.SiteLibraryEnum import SiteLibraryEnum
-
-from MayaPyApplication import MayaPyApplication
+from RandoTerrainApplication import RandoTerrainApplication
 
 #___________________________________________________________________________________________________ MayaPyCompiler
-class MayaPyCompiler(PyGlassApplicationCompiler):
+class RandoTerrainCompiler(PyGlassApplicationCompiler):
     """A class for..."""
 
 #===================================================================================================
@@ -27,17 +26,17 @@ class MayaPyCompiler(PyGlassApplicationCompiler):
 #___________________________________________________________________________________________________ GS: appFilename
     @property
     def appFilename(self):
-        return 'MayaPy'
+        return 'RandoTerrain'
 
 #___________________________________________________________________________________________________ GS: appDisplayName
     @property
     def appDisplayName(self):
-        return 'MayaPy'
+        return 'RandoTerrain'
 
 #___________________________________________________________________________________________________ GS: applicationClass
     @property
     def applicationClass(self):
-        return MayaPyApplication
+        return RandoTerrainApplication
 
 #___________________________________________________________________________________________________ GS: iconPath
     @property
@@ -48,5 +47,5 @@ class MayaPyCompiler(PyGlassApplicationCompiler):
 ####################################################################################################
 
 if __name__ == '__main__':
-    MayaPyCompiler().run()
+    RandoTerrainCompiler().run()
 

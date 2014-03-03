@@ -1,7 +1,3 @@
-# NimbleStatusElement.py
-# (C)2013
-# Scott Ernst
-
 import nimble
 
 from PySide import QtCore
@@ -11,8 +7,7 @@ from pyglass.gui.PyGlassGuiUtils import PyGlassGuiUtils
 from pyglass.elements.PyGlassElement import PyGlassElement
 from pyglass.themes.ColorSchemes import ColorSchemes
 from pyglass.themes.ThemeColorBundle import ThemeColorBundle
-
-from mayapy.enum.UserConfigEnum import UserConfigEnum
+from randoterrain.enum.UserConfigEnum import UserConfigEnum
 
 #___________________________________________________________________________________________________ NimbleStatusElement
 class NimbleStatusElement(PyGlassElement):
