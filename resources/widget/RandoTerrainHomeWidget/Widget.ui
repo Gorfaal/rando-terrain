@@ -16,15 +16,25 @@
   <layout class="QHBoxLayout" name="horizontalLayout">
    <item>
     <layout class="QFormLayout" name="formLayout">
-     <item row="3" column="0">
-      <widget class="QLabel" name="seedLabel">
+     <property name="fieldGrowthPolicy">
+      <enum>QFormLayout::AllNonFixedFieldsGrow</enum>
+     </property>
+     <item row="0" column="0">
+      <widget class="QLabel" name="sizeLabel">
        <property name="text">
-        <string>Seed:</string>
+        <string>Size:</string>
        </property>
       </widget>
      </item>
-     <item row="3" column="1">
-      <widget class="QLineEdit" name="lineEdit"/>
+     <item row="0" column="1">
+      <widget class="QDial" name="sizeDial"/>
+     </item>
+     <item row="2" column="0">
+      <widget class="QLabel" name="dimensionLabel">
+       <property name="text">
+        <string>Dimensions:</string>
+       </property>
+      </widget>
      </item>
      <item row="2" column="1">
       <widget class="QLabel" name="dimensionsLabel">
@@ -33,20 +43,20 @@
        </property>
       </widget>
      </item>
-     <item row="0" column="1">
-      <widget class="QDial" name="sizeDial"/>
-     </item>
-     <item row="0" column="0">
-      <widget class="QLabel" name="sizeLabel">
+     <item row="3" column="0">
+      <widget class="QLabel" name="magnitudeLabel">
        <property name="text">
-        <string>Size:</string>
+        <string>Magnitude:</string>
        </property>
       </widget>
      </item>
-     <item row="2" column="0">
-      <widget class="QLabel" name="dimensionLabel">
+     <item row="4" column="1">
+      <widget class="QDial" name="magnitudeDial"/>
+     </item>
+     <item row="5" column="0">
+      <widget class="QLabel" name="magnitudeValLabel">
        <property name="text">
-        <string>Dimensions:</string>
+        <string/>
        </property>
       </widget>
      </item>
