@@ -61,10 +61,10 @@ class RandoTerrainHomeWidget(PyGlassWidget):
             half_length = length / 2
             for x in range(0, self.size - 1, length):
                 for y in range(0, self.size - 1, length):
-                    top_left = self.getVertexHeight((x, y))
-                    top_right = self.getVertexHeight((x + length, y))
-                    bottom_left = self.getVertexHeight((x, y + length))
-                    bottom_right = self.getVertexHeight((x + length, y + length))
+                    bottom_left = self.getVertexHeight((x, y))
+                    bottom_right = self.getVertexHeight((x + length, y))
+                    top_left = self.getVertexHeight((x, y + length))
+                    top_right = self.getVertexHeight((x + length, y + length))
                     average = (top_left + top_right + bottom_left + bottom_right) / 4
                     offset = randint(-offset_magnitude, offset_magnitude)
                     self.setVertexHeight((x + half_length, y + half_length), average + offset)
