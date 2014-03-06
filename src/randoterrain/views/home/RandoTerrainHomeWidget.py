@@ -22,6 +22,7 @@ class RandoTerrainHomeWidget(PyGlassWidget):
             disabled=self.mainWindow.appConfig.get(UserConfigEnum.NIMBLE_TEST_STATUS, True))
         statusLayout.addWidget(self._nimbleStatus)
         self.magnitudeValLabel.setText('1')
+        self.magnitude = 1
         self.sizeDial.setRange(1, 10)
         self.magnitudeDial.setRange(1, 100)
         self.sizeDial.valueChanged.connect(self._sizeChanged)
