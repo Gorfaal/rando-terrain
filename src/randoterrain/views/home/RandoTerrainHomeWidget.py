@@ -8,8 +8,10 @@ from randoterrain.enum.UserConfigEnum import UserConfigEnum
 from randoterrain.views.home.NimbleStatusElement import NimbleStatusElement
 from random import randint
 from nimble import cmds
+from nimble.error import MayaCommandException
 import nimble
 nimble.changeKeepAlive(True)
+
 
 class RandoTerrainHomeWidget(PyGlassWidget):
     def __init__(self, parent, **kwargs):
@@ -51,14 +53,14 @@ class RandoTerrainHomeWidget(PyGlassWidget):
         shapes = cmds.ls("terrain", sl=True, fl=True)
         self.terrain = shapes[0]
 
-        offset_magnitude = self.magnitude
+        offset_magnitude = int(self.magnitude)
         self.setVertexHeight((0, 0), randint(-offset_magnitude, offset_magnitude))
         self.setVertexHeight((self.size - 1, 0), randint(-offset_magnitude, offset_magnitude))
         self.setVertexHeight((0, self.size - 1), randint(-offset_magnitude, offset_magnitude))
         self.setVertexHeight((self.size - 1, self.size - 1), randint(-offset_magnitude, offset_magnitude))
 
         length = self.size - 1
-        while length >= 2:
+        while length >= 1:
             half_length = length / 2
             for x in range(0, self.size - 1, length):
                 for y in range(0, self.size - 1, length):
@@ -66,9 +68,12 @@ class RandoTerrainHomeWidget(PyGlassWidget):
                     bottom_right = self.getVertexHeight((x + length, y))
                     top_left = self.getVertexHeight((x, y + length))
                     top_right = self.getVertexHeight((x + length, y + length))
-                    average = (top_left + top_right + bottom_left + bottom_right) / 4
-                    offset = randint(-offset_magnitude, offset_magnitude)
-                    self.setVertexHeight((x + half_length, y + half_length), average + offset)
+                    average = (top_left + top_right + bottom_left + bottom_right) / 4.0
+                    offset = randint(int(-offset_magnitude), int(offset_magnitude))
+                    point = (x + half_length, y + half_length)
+                    flat_index = self.getFlatIndex(point)
+                    if 0 <= flat_index <= self.size * self.size:
+                        self.setVertexHeight(point, average + offset)
 
             for x in range(0, self.size - 1, half_length):
                 for y in range((x + half_length) % length, self.size-1, length):
@@ -77,18 +82,25 @@ class RandoTerrainHomeWidget(PyGlassWidget):
                     top = self.getVertexHeight((x, (y + half_length + self.size) % self.size))
                     bottom = self.getVertexHeight((x, (y - half_length) % self.size))
                     average = (left + right + top + bottom) / 4
-                    offset = randint(-offset_magnitude, offset_magnitude)
-                    self.setVertexHeight((x, y), average + offset)
-            offset_magnitude /= 2
+                    offset = randint(int(-offset_magnitude), int(offset_magnitude))
+                    point = (x, y)
+                    flat_index = self.getFlatIndex(point)
+                    if 0 <= flat_index <= self.size * self.size:
+                        self.setVertexHeight((x, y), average + offset)
+            offset_magnitude /= 2.0
             length /= 2
         print "DONE!"
 
     def getVertexHeight(self, vertex):
         return self.getVertex(vertex)[1]
 
-    def setVertexHeight(self, vertex, val):
+    def getFlatIndex(self, vertex):
         x, y = vertex
         flat_index = y * self.size + x
+        return flat_index
+
+    def setVertexHeight(self, vertex, val):
+        flat_index = self.getFlatIndex(vertex)
         index_string = str(self.terrain)
         index_string += ".pnts["
         index_string += str(flat_index)
@@ -98,7 +110,7 @@ class RandoTerrainHomeWidget(PyGlassWidget):
 
     def getVertex(self, vertex):
         x, y = vertex
-        if x * y < self.size * self.size:
+        if x * y < (self.size * self.size) - 1:
             flat_index = y * self.size + x
             index_string = str(self.terrain)
             index_string += ".pnts["
